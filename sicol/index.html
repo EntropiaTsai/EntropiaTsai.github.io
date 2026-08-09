@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="academic-paper">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapping Political Metaphors · SICOL 2026</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/themes/academic-paper.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.17"></script>
+</head>
+<body
+  data-themes="academic-paper,minimal-white,editorial-serif"
+  data-theme-base="assets/themes/">
+<div class="stage-viewport">
+<div class="stage" id="stage">
+<div class="page-num" id="page-num" hidden aria-hidden="true"></div>
+<div class="deck">
+
+  <!-- 1. Cover -->
+  <section class="slide slide-cover" data-title="Cover">
+    <div class="slide-frame">
+    <p class="eyebrow">SICOL 2026 · Sungshin Women’s University, Seoul</p>
+    <h1 class="title-cover">Mapping Political Metaphors<br>in Taiwanese Social Media</h1>
+    <p class="subtitle">A Large Language Model Approach</p>
+    <hr class="rule">
+    <p class="byline">Chang-Yu Tsai<br><span>National Institute of Cyber Security</span></p>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>向聽眾問好，簡單自我介紹（台灣資安院）。</li>
+        <li>破題：我們使用 LLM 來分析台灣社群媒體的政治隱喻。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Hello everyone. My name is Chang-Yu Tsai from the National Institute of Cyber Security in Taiwan. Today, I will present our study with the topic Mapping political metaphors in Taiwanese social media, a Large Language Model approach."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 2. What/Why -->
+  <section class="slide slide-claim" data-title="Why metaphor">
+    <div class="slide-frame">
+    <p class="eyebrow">Introduction</p>
+    <h2 class="title">What are we analysing, and why?</h2>
+    <div class="diagram diagram-why-split" aria-hidden="true">
+      <div class="why-panel">
+        <div class="why-panel-header">
+          <img src="icons/target.png" alt="Target icon" class="why-panel-icon-inline">
+          <b>What we analyse</b>
+        </div>
+        <span class="why-lead">Understanding A through B.</span>
+        <div class="why-body why-body-stack">
+          <div class="why-mini" style="padding: 12px 16px; gap: 6px;">
+            <div class="why-mini-header">
+              <b>Metaphor</b>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 20px; font-weight: 700; color: var(--text-2);">「泛藍立委<span style="color: var(--accent);">夾著尾巴</span>逃跑了」</span>
+              <span style="font-size: 20px; font-style: italic; color: var(--text-1);">"Pan-blue legislators fled, <span style="color: var(--accent); font-weight: 600;">tucking their tails</span>."</span>
+            </div>
+          </div>
+          <div class="why-mini" style="padding: 12px 16px; gap: 6px;">
+            <div class="why-mini-header">
+              <b>Metonymy</b>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 20px; font-weight: 700; color: var(--text-2);">「政黑版的<span style="color: var(--accent);">吱吱</span>又崩潰了」</span>
+              <span style="font-size: 20px; font-style: italic; color: var(--text-1);">"The <span style="color: var(--accent); font-weight: 600;">zhizhi (monkey onomatopoeia)</span> on HatePolitics board are having a meltdown again."</span>
+            </div>
+          </div>
+          <div class="why-mini" style="padding: 12px 16px; gap: 6px;">
+            <div class="why-mini-header">
+              <b>Simile</b>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 20px; font-weight: 700; color: var(--text-2);">「基層公務員每天累得<span style="color: var(--accent);">跟狗一樣</span>」</span>
+              <span style="font-size: 20px; font-style: italic; color: var(--text-1);">"Frontline civil servants work <span style="color: var(--accent); font-weight: 600;">like dogs</span> every day."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-panel">
+        <div class="why-panel-header">
+          <img src="icons/thought.png" alt="Thinking bubble icon" class="why-panel-icon-inline">
+          <b>Why analyse them</b>
+        </div>
+        <span class="why-lead">Why these frames matter in the real world.</span>
+        <div class="why-body why-mini-grid">
+          <div class="why-mini why-mini-row" style="padding: 22px 18px;">
+            <img src="icons/search.svg" alt="Search icon" class="why-mini-icon-img">
+            <div class="why-mini-text" style="justify-content: center;">
+              <b>Reveal hidden stances</b>
+            </div>
+          </div>
+          <div class="why-mini why-mini-row" style="padding: 22px 18px;">
+            <img src="icons/flow-chart.svg" alt="Flow chart icon" class="why-mini-icon-img">
+            <div class="why-mini-text" style="justify-content: center;">
+              <b>Trace specific targets</b>
+            </div>
+          </div>
+          <div class="why-mini why-mini-row" style="padding: 22px 18px;">
+            <img src="icons/globe.svg" alt="Globe icon" class="why-mini-icon-img">
+            <div class="why-mini-text" style="justify-content: center;">
+              <b>Map cultural patterns</b>
+            </div>
+          </div>
+          <div class="why-mini why-mini-row" style="padding: 22px 18px;">
+            <img src="icons/gallery.png" alt="Picture icon" class="why-mini-icon-img">
+            <div class="why-mini-text" style="justify-content: center;">
+              <b>Catch viral memes</b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>說明我們抓的範圍很廣，包含：隱喻、借代、明喻。</li>
+        <li>原因：因為它們都是「未來可能成形的隱喻」。</li>
+        <li>實務價值：可以揭露隱含立場、追蹤特定對象、描繪文化、捕捉迷因。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"To begin, what are we analysing and why? We look at metaphors, for example, 'legislators tucking their tails', calling people 'monkeys', or saying someone 'works like a dog'. We also include metonymies and similes because they are early stages of metaphors.<br><br>Why do they matter? First, they <b>reveal hidden stances</b>—like using 'dog' as an indirect insult. Second, they let us <b>trace specific targets</b>, showing how politicians are framed. Additionally, they <b>map cultural patterns</b> of our society. Lastly, they help us <b>catch viral memes</b> with visualised metaphors"</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Comparison -->
+  <section class="slide" data-title="Previous studies">
+    <div class="slide-frame">
+    <p class="eyebrow">Literature & Gap</p>
+    <h2 class="title">How does this study differ from previous ones?</h2>
+    
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3 class="compare-title">Previous Studies</h3>
+        <div class="compare-card">
+          <img src="icons/document.svg" class="compare-icon">
+          <div class="compare-text">
+            <b>Formal texts</b>
+            <span>Miss everyday colloquial public usage.</span>
+          </div>
+        </div>
+        <div class="compare-card">
+          <img src="icons/manual.svg" class="compare-icon">
+          <div class="compare-text">
+            <b>Manual coding</b>
+            <span>Time- and labour-intensive for massive data.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-arrow-col">
+        <div class="compare-arrow">→</div>
+        <div class="compare-arrow">→</div>
+      </div>
+
+      <div class="compare-col compare-col-accent">
+        <h3 class="compare-title">This Study</h3>
+        <div class="compare-card">
+          <img src="icons/chat.svg" class="compare-icon">
+          <div class="compare-text">
+            <b>Social media</b>
+            <span>Captures real-world public voices.</span>
+          </div>
+        </div>
+        <div class="compare-card">
+          <img src="icons/robot.svg" class="compare-icon">
+          <div class="compare-text">
+            <b>LLMs</b>
+            <span>Reduce cost for large-scale analysis.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>對比傳統研究：過去只看正式文本，忽略了一般人的口語。</li>
+        <li>對比傳統方法：人工編碼太慢了，無法應付海量資料。</li>
+        <li>帶出我們的方法：看社群媒體＋使用 LLM 降低成本。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Next, how is our study different from past research? First, past studies mostly looked at formal texts, which misses how normal people actually talk. They also used manual coding, which could take too much time for massive data. In our study, however, we look at social media to capture real-world voices. Furthermore, we use LLMs to greatly reduce time and cost on large-scale analysis."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 4. RQ -->
+  <section class="slide slide-rq" data-title="Research question">
+    <div class="slide-frame">
+    <p class="eyebrow">Research Questions</p>
+    <div class="rq-list">
+      <div class="rq-item">
+        <span class="rq-num">RQ1</span>
+        <p class="claim">What are the dominant political metaphors in Taiwanese social media?</p>
+      </div>
+      <div class="rq-item">
+        <span class="rq-num">RQ2</span>
+        <p class="claim">How have these metaphors evolved between 2014 and 2026?</p>
+      </div>
+      <div class="rq-item">
+        <span class="rq-num">RQ3</span>
+        <p class="claim">To what extent can LLMs reliably extract these colloquial and context-heavy metaphors at scale?</p>
+      </div>
+    </div>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>清楚唸出三個研究問題（主要隱喻為何？如何演變？LLM 可靠嗎？）。</li>
+        <li>強調整場報告都會圍繞著回答這三個問題進行。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"This brings us to our three main research questions. Number one: What are the dominant political metaphors in Taiwanese social media? Number two: How have these metaphors evolved between 2014 and 2026? And number three: To what extent can LLMs reliably extract these colloquial and context-heavy metaphors at scale?"</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 5. Methodology I: Data -->
+  <section class="slide" data-title="Data and periods">
+    <div class="slide-frame">
+    <p class="eyebrow">Methodology I</p>
+    <h2 class="title">What data did we analyse?</h2>
+    
+    <div class="time-grid">
+      <div class="time-node active">
+        <div class="time-year">2014</div>
+        <div class="time-event">Local Elections</div>
+        <div class="time-data">n = 624</div>
+      </div>
+      <div class="time-node dropped">
+        <div class="time-year">2018</div>
+        <div class="time-event">Local Elections</div>
+        <div class="time-data">Data purged</div>
+      </div>
+      <div class="time-node dropped">
+        <div class="time-year">2022</div>
+        <div class="time-event">Local Elections</div>
+        <div class="time-data">Data purged</div>
+      </div>
+      <div class="time-node active">
+        <div class="time-year">2026</div>
+        <div class="time-event">Local Elections</div>
+        <div class="time-data">n = 624</div>
+      </div>
+    </div>
+    
+    <div style="margin-top: 40px; text-align: center;">
+      <span class="chip chip-accent" style="font-size: 32px; padding: 12px 24px;">Total: 1,248 PTT HatePolitics posts</span>
+    </div>
+    
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>介紹資料來源：PTT 政黑版（共一千多篇）。</li>
+        <li>解釋為何選 2014 與 2026：原本想看四次地方選舉，但因 PTT 刪除舊文的機制而流失。</li>
+        <li>點出 2014 太陽花學運因為討論度極高，在系統的演算法下自然被大量保留了下來。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"To answer these questions, we collected over one thousand posts from the PTT HatePolitics board. Initially, we planned to track four local elections. However, because the platform routinely deletes old data, we lost the middle years. Fortunately, the 2014 Sunflower Movement generated such massive discussions that a huge amount of posts naturally survived the system's deletion rules. Combined with our new data from 2026, we now have two distinct periods to compare."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 6. Methodology II: Model -->
+  <section class="slide" data-title="Model settings">
+    <div class="slide-frame">
+    <p class="eyebrow">Methodology II</p>
+    <h2 class="title">How did we configure the LLM?</h2>
+    
+    <div class="compare-grid" style="grid-template-columns: 1fr 1fr; margin-top: 60px; gap: 40px;">
+      <div class="compare-col">
+        <h3 class="compare-title">Model</h3>
+        <div class="compare-card" style="justify-content: center; text-align: center;">
+          <div class="compare-text">
+            <b style="font-size: 42px;">Gemini 3.1 Pro</b>
+          </div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <h3 class="compare-title">Parameters</h3>
+        <div class="compare-card" style="justify-content: center; text-align: center;">
+          <div class="compare-text" style="gap: 16px; align-items: center; font-family: monospace; font-size: 30px; font-weight: 600; color: var(--text-1);">
+            <div>temperature = 0.0</div>
+            <div>max_tokens = 1200</div>
+            <div>thinking_level = medium</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>帶出使用的模型：Gemini 3.1 Pro。</li>
+        <li>解釋參數設定：Temperature 設為 0 以保持結果一致。</li>
+        <li>提到給予模型充足的思考空間：Thinking level 設為 medium。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"For our model, we used Gemini 3.1 Pro. To keep the output as consistent as possible, we set the temperature to exactly zero. We also set the thinking level to medium and max output tokens to 1200, which gives the model enough reasoning space to analyse these complex metaphors."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 7. Methodology III: Prompt Stages (Network) -->
+  <section class="slide" data-title="Prompt stages">
+    <div class="slide-frame">
+    <p class="eyebrow">Methodology III</p>
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <h2 class="title">How did we structure the extraction?</h2>
+      <div style="font-size: 18px; color: var(--text-3); font-weight: 500; letter-spacing: 0.02em;">
+        Based on CMDAG (Shao et al., 2024)
+      </div>
+    </div>
+    
+    <div style="margin-top: 12px; margin-bottom: 24px; text-align: left; padding-left: 24px; border-left: 4px solid var(--accent);">
+      <div style="font-size: 24px; font-weight: 700; color: var(--text-2); line-height: 1.2;">「泛藍立委<span style="color: var(--accent);">夾著尾巴</span>逃跑了」</div>
+      <div style="font-size: 24px; color: var(--text-1); margin-top: 4px; font-style: italic;">"Pan-blue legislators fled, <span style="color: var(--accent); font-weight: 600;">tucking their tails</span>."</div>
+    </div>
+    
+    <style>
+      .neo-flow {
+        display: grid;
+        grid-template-columns: auto minmax(48px, 1fr) auto minmax(48px, 1fr) auto;
+        grid-template-rows: auto auto auto auto;
+        align-items: center;
+        column-gap: 0;
+        row-gap: 18px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 28px auto 0;
+      }
+      .neo-node {
+        border-radius: 999px;
+        padding: 14px 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        z-index: 2;
+        white-space: nowrap;
+        border: 4px solid;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 78px;
+        background: var(--surface);
+      }
+      .neo-label { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+      .neo-val { font-size: 26px; font-weight: 800; color: var(--text-1); }
+      .n-red {
+        border-color: var(--accent);
+        background: color-mix(in srgb, var(--accent) 5%, var(--surface));
+      }
+      .n-red .neo-label { color: var(--accent); }
+      .n-green {
+        border-color: #059669;
+        background: color-mix(in srgb, #059669 5%, var(--surface));
+      }
+      .n-green .neo-label { color: #059669; }
+      .n-gray {
+        border-color: var(--border-strong);
+        border-style: dashed;
+        box-shadow: none;
+        background: var(--surface-2);
+        padding: 10px 24px;
+        min-height: 64px;
+      }
+      .n-gray .neo-label { color: var(--text-2); }
+      .neo-vline {
+        grid-column: 1;
+        grid-row: 1 / 4;
+        justify-self: center;
+        width: 0;
+        height: calc(100% - 78px);
+        margin-top: 39px;
+        border-left: 3 dashed var(--border-strong);
+        z-index: 0;
+        pointer-events: none;
+      }
+      .arrow-cell {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+      .arrow-x {
+        position: relative;
+        width: 100%;
+        height: 4px;
+        background: transparent;
+      }
+      .arrow-x::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 10px;
+        top: 0;
+        height: 4px;
+      }
+      .arrow-x::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+      }
+      .arrow-red::before { background: var(--accent); }
+      .arrow-red::after { border-left: 11px solid var(--accent); }
+      .arrow-green::before { background: #059669; }
+      .arrow-green::after { border-left: 11px solid #059669; }
+      .stage-lbl {
+        font-size: 15px;
+        font-weight: 800;
+        color: var(--text-3);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-top: 2px solid var(--border);
+        padding-top: 12px;
+        white-space: nowrap;
+        margin-top: 8px;
+        text-align: center;
+      }
+    </style>
+
+    <div class="neo-flow">
+      <div class="neo-vline"></div>
+
+      <!-- Row 1: Target path -->
+      <div class="neo-node n-red" style="grid-column: 1; grid-row: 1;">
+        <div class="neo-label">Tenor</div>
+        <div class="neo-val">Legislators</div>
+      </div>
+      <div class="arrow-cell" style="grid-column: 2; grid-row: 1;">
+        <div class="arrow-x arrow-red"></div>
+      </div>
+      <div class="neo-node n-red" style="grid-column: 3; grid-row: 1;">
+        <div class="neo-label">Target Domain</div>
+        <div class="neo-val">Politician</div>
+      </div>
+      <div class="arrow-cell" style="grid-column: 4; grid-row: 1;">
+        <div class="arrow-x arrow-red"></div>
+      </div>
+      <div class="neo-node n-red" style="grid-column: 5; grid-row: 1;">
+        <div class="neo-label">Macro Target Domain</div>
+        <div class="neo-val">Politics</div>
+      </div>
+
+      <!-- Row 2: Ground only -->
+      <div class="neo-node n-gray" style="grid-column: 1; grid-row: 2;">
+        <div class="neo-label">Ground</div>
+        <div class="neo-val" style="font-weight: 600;">Fleeing in Defeat</div>
+      </div>
+
+      <!-- Row 3: Source path -->
+      <div class="neo-node n-green" style="grid-column: 1; grid-row: 3;">
+        <div class="neo-label">Vehicle</div>
+        <div class="neo-val">Tucking Tail</div>
+      </div>
+      <div class="arrow-cell" style="grid-column: 2; grid-row: 3;">
+        <div class="arrow-x arrow-green"></div>
+      </div>
+      <div class="neo-node n-green" style="grid-column: 3; grid-row: 3;">
+        <div class="neo-label">Source Domain</div>
+        <div class="neo-val">Dog</div>
+      </div>
+      <div class="arrow-cell" style="grid-column: 4; grid-row: 3;">
+        <div class="arrow-x arrow-green"></div>
+      </div>
+      <div class="neo-node n-green" style="grid-column: 5; grid-row: 3;">
+        <div class="neo-label">Macro Source Domain</div>
+        <div class="neo-val">Animal</div>
+      </div>
+
+      <!-- Row 4: method labels -->
+      <div class="stage-lbl" style="grid-column: 1; grid-row: 4;">By Prompts</div>
+      <div class="stage-lbl" style="grid-column: 3; grid-row: 4;">By Prompts</div>
+      <div class="stage-lbl" style="grid-column: 5; grid-row: 4;">Manual Aggregation</div>
+    </div>
+    
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>用「夾著尾巴」的例子來展示萃取邏輯。</li>
+        <li>強調我們採用的是 CMDAG（Conceptual Metaphor Domain Annotation Guidelines）來拆解 Tenor, Vehicle, Ground，並推導到 Domain。</li>
+        <li>這證明了我們不只抓名詞，還能抓到「動作與行為」背後的結構隱喻。</li>
+        <li>說明為了達成此工作流，我們設計了兩個 Prompts：第一個處理抽取 (TVG)，其輸出會串接給第二個 Prompt 進行領域映射 (Domain mapping)。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Now, let me show you an example of how we find these metaphors. Look at the sentence: 'Pan-blue legislators fled, tucking their tails'. Following the Conceptual Metaphor Domain Annotation Guidelines-CMDAG protocol—we first identify the literal Tenor 'Legislators' and the non-literal action 'Tucking Tail'. Then, based on the Ground of fleeing in defeat, we map them into the Target Domain 'Politician' and Source Domain 'Dog'. Finally, we push them into the macro frame of 'Politics' and 'Animal'. As you can see, this method captures not just nouns, but also dynamic actions.<br><br>To make the LLM execute this workflow, we designed two prompts. The first one extracts the tenor, vehicle, and ground. This output is then passed to the second prompt, which analyses the target and source domains."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 8. Methodology IV: Prompt Architecture -->
+  <section class="slide" data-title="Prompt Architecture">
+    <div class="slide-frame">
+      <p class="eyebrow">Methodology IV</p>
+      <h2 class="title">Prompt Architecture</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 32px; margin-top: 30px; align-items: stretch; max-width: 1440px; margin-left: auto; margin-right: auto;">
+        
+        <!-- 1. Persona -->
+        <div style="background: var(--surface); border: 2px solid #4a7dbf; border-radius: 12px; padding: 20px 22px; min-height: 280px; box-sizing: border-box; display: flex; align-items: center; gap: 16px;">
+          <div style="background: #4a7dbf; color: white; width: 50px; height: 50px; min-width: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px;">1</div>
+          <div>
+            <b style="font-size: 36px; color: #4a7dbf;">Persona</b>
+            <ul style="margin: 8px 0 0; padding-left: 22px; font-size: 26px; color: var(--text-2); line-height: 1.4; display: flex; flex-direction: column; gap: 8px;">
+              <li style="white-space: nowrap;">Metaphor linguist</li>
+              <li style="white-space: nowrap;">Taiwan politics expert</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. Constraints -->
+        <div style="background: var(--surface); border: 2px solid #b5714f; border-radius: 12px; padding: 20px 22px; min-height: 280px; box-sizing: border-box; display: flex; align-items: center; gap: 16px;">
+          <div style="background: #b5714f; color: white; width: 50px; height: 50px; min-width: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px;">2</div>
+          <div>
+            <b style="font-size: 36px; color: #b5714f;">Constraints</b>
+            <ul style="margin: 8px 0 0; padding-left: 22px; font-size: 26px; color: var(--text-2); line-height: 1.4; display: flex; flex-direction: column; gap: 8px;">
+              <li style="white-space: nowrap;"><b>Tenor/Target</b>: political</li>
+              <li style="white-space: nowrap;"><b>Vehicle/Source</b>: embodied domain (animal, war...)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. CoT -->
+        <div style="background: var(--surface); border: 2px solid #2f9e82; border-radius: 12px; padding: 20px 22px; min-height: 280px; box-sizing: border-box; display: flex; align-items: center; gap: 16px; box-shadow: 0 10px 30px rgba(47,158,130,0.15);">
+          <div style="background: #2f9e82; color: white; width: 50px; height: 50px; min-width: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px;">3</div>
+          <div>
+            <b style="font-size: 36px; color: #2f9e82;">5-step Chain of Thought (CoT)</b>
+            <ul style="margin: 8px 0 0; padding-left: 22px; font-size: 26px; color: var(--text-2); line-height: 1.4; display: flex; flex-direction: column; gap: 8px;">
+              <li style="white-space: nowrap;">Step-by-step logic</li>
+              <li style="white-space: nowrap;">Frame before literal sense</li>
+              <li style="white-space: nowrap;">Explicit output reasoning</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. Few-shot -->
+        <div style="background: var(--surface); border: 2px solid #9a8a3f; border-radius: 12px; padding: 20px 22px; min-height: 280px; box-sizing: border-box; display: flex; align-items: center; gap: 16px;">
+          <div style="background: #9a8a3f; color: white; width: 50px; height: 50px; min-width: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px;">4</div>
+          <div>
+            <b style="font-size: 36px; color: #9a8a3f;">Few-shot</b>
+            <ul style="margin: 8px 0 0; padding-left: 22px; font-size: 26px; color: var(--text-2); line-height: 1.4; display: flex; flex-direction: column; gap: 8px;">
+              <li style="white-space: nowrap;">Worked example pairs</li>
+              <li style="white-space: nowrap;">Anchor abstract rules</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>完整介紹 Prompt 的四個區塊。</li>
+        <li>Persona：賦予模型語言學家與台灣政治專家的雙重人設。</li>
+        <li>Constraints：嚴格限制目標必須是政治，來源必須是具象實體。</li>
+        <li>CoT：五步驟思維鏈，核心原則是「先看整體脈絡，再處理字面意義」。</li>
+        <li>Few-shot：提供範例，讓模型錨定抽象規則。</li>
+        <li style="color: #b5714f; font-weight: 600;">※ 防禦準備 (Q&A)：為何強調 Embodied domain？<br>答：這呼應 CMT 的核心概念 (Embodiment)，隱喻必須建構在具體的身體或物理經驗上。在我們的 Prompt 中，我們明確要求 LLM 找的來源域必須是<b>「可感知來源域」</b>，並舉例：動物、戰爭、廢棄物、可操控的物件等。如果 LLM 抓出的 Source 也是抽象概念（例如：「這場選舉是一個『過程』」），或者缺乏具體物理互動（例如：「人民的力量」），就不算 embodied domain，在人工審查時會被剔除。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"More specifically, our prompts were designed with four key features. First, we gave the LLM a specific <b>Persona</b>: acting as both a metaphor linguist and a Taiwan politics expert. Then, we set strict <b>Constraints</b>: the Target must be political, and the Source must be an embodied domain. Next, we used a <b>Chain of Thought</b> approach. The most critical rule here is to judge the overall semantic frame before looking at literal words. Lastly, we provided <b>Few-shot</b> examples to anchor these abstract rules."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 9. Methodology IV-B: Reasoning Workflows -->
+  <section class="slide" data-title="Reasoning Workflows">
+    <div class="slide-frame">
+      <p class="eyebrow">Methodology IV-B</p>
+      <h2 class="title">CoT Workflows</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; height: 600px;">
+        
+        <!-- Stage 1: Extraction -->
+        <div style="background: #1e1e1e; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid #333; overflow: hidden;">
+          <div style="background: #2d2d2d; padding: 10px 20px; font-family: monospace; font-size: 16px; color: #aaa; display: flex; justify-content: space-between;">
+            <span>Stage I: Linguistic Deconstruction</span>
+            <span style="color: #ce9178;">Extraction Flow</span>
+          </div>
+          <div style="padding: 30px; font-family: 'Fira Code', monospace; font-size: 23px; line-height: 1.65; color: #d4d4d4;">
+            <div style="border-left: 3px solid #569cd6; padding-left: 16px; margin-bottom: 20px;">
+              <b style="color: #569cd6;">1. Semantic Frame</b><br>
+              <span style="font-size: 21px; opacity: 0.85;">Read the whole text before parsing words.</span>
+            </div>
+            <div style="border-left: 3px solid #ce9178; padding-left: 16px; margin-bottom: 20px;">
+              <b style="color: #ce9178;">2. Vehicle</b><br>
+              <span style="font-size: 21px; opacity: 0.85;">Locate the non-literal source term.</span>
+            </div>
+            <div style="border-left: 3px solid #dcdcaa; padding-left: 16px; margin-bottom: 20px;">
+              <b style="color: #dcdcaa;">3. Tenor</b><br>
+              <span style="font-size: 21px; opacity: 0.85;">Resolve the real political target.</span>
+            </div>
+            <div style="border-left: 3px solid #4ec9b0; padding-left: 16px; margin-bottom: 20px;">
+              <b style="color: #4ec9b0;">4. Ground</b><br>
+              <span style="font-size: 21px; opacity: 0.85;">Extract mapping motivation.</span>
+            </div>
+            <div style="border-left: 3px solid #c586c0; padding-left: 16px;">
+              <b style="color: #c586c0;">5. Validation</b><br>
+              <span style="font-size: 21px; opacity: 0.85;">Reject incoherent mappings.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2: Mapping -->
+        <div style="background: #1e1e1e; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid #333; overflow: hidden;">
+          <div style="background: #2d2d2d; padding: 10px 20px; font-family: monospace; font-size: 16px; color: #aaa; display: flex; justify-content: space-between;">
+            <span>Stage II: Theoretical Alignment</span>
+            <span style="color: #4ec9b0;">Mapping Flow</span>
+          </div>
+          <div style="padding: 30px; font-family: 'Fira Code', monospace; font-size: 23px; line-height: 1.65; color: #d4d4d4;">
+            <div style="border-left: 3px solid #4ec9b0; padding-left: 16px; margin-bottom: 24px;">
+              <b style="color: #4ec9b0;">1. Context-First</b><br>
+              <span style="font-size: 21px; opacity: 0.85;">Judge context before assigning domain.</span>
+            </div>
+            <div style="border-left: 3px solid #dcdcaa; padding-left: 16px; margin-bottom: 24px;">
+              <b style="color: #dcdcaa;">2. Literal Restoration</b><br>
+              <span style="font-size: 21px; opacity: 0.85;">Restore actions to physical scenes.<br>(e.g. "immerse" [verb] ➔ Liquid/Container)</span>
+            </div>
+            <div style="border-left: 3px solid #b5cea8; padding-left: 16px;">
+              <b style="color: #b5cea8;">3. Domain Classification</b><br>
+              <span style="font-size: 21px; opacity: 0.85;">Classify vehicle by its hypernym.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>承接上一頁的 CoT，展示模型實際的思考流程。</li>
+        <li>第一階段（抽取）：模型像語言學家，先看整句大意，再精準抓出對應字詞。</li>
+        <li>第二階段（映射）：模型像分析師，透過「還原字面意義」將鄉民用語歸類到學術框架中。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Following the Chain of Thought mentioned earlier, this is what the actual reasoning chain looks like. The first prompt is the extraction flow. The model acts like a linguist to break down the sentence step by step. The LLM is asked to read the whole text to understand the context. Afterwards, it sequentially extracts the vehicle, the tenor, and the ground. The final step is to validate the output. It compares the extracted information with the context to confirm if the output is coherent or not.<br><br>Then, in the second prompt, the model acts like an analyst. It also reads the context and then performs 'Literal Restoration' to group the slang words into hypernymic categories like 'Animal' or 'War'."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 10. Results I: Repeated-run Stability -->
+  <section class="slide" data-title="Evaluation: Stability & Accuracy">
+    <div class="slide-frame">
+    <p class="eyebrow">Results I</p>
+    <h2 class="title">LLM Evaluation & Cleaning</h2>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; align-items: stretch;">
+      
+      <!-- Left: Stability -->
+      <div class="caution-item" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding: 30px 20px; min-height: 380px;">
+        <b style="font-size: 28px; color: var(--text-1); margin-bottom: 24px;">1. Repeated-run Stability</b>
+        
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <div style="font-size: 22px; color: var(--text-2); margin-bottom: 30px;">Jaccard similarity</div>
+          <div style="display: flex; align-items: baseline; gap: 10px;">
+            <span style="font-size: 64px; font-weight: 800; color: var(--accent);">0.485</span>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+              <span style="font-size: 24px; color: var(--text-2); line-height: 1;">mean &middot; 3 runs</span>
+              <span style="font-size: 20px; color: var(--text-3); line-height: 1;">on 10% sample</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Accuracy -->
+      <div class="caution-item" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding: 30px 20px; min-height: 380px;">
+        <b style="font-size: 28px; color: var(--text-1); margin-bottom: 24px;">2. Accuracy Filtering</b>
+        
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <div style="font-size: 22px; color: var(--text-2); margin-bottom: 30px;">Removing incorrect mappings</div>
+          <div style="display: flex; align-items: baseline; gap: 10px;">
+            <span style="font-size: 64px; font-weight: 800; color: var(--accent);">129</span>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+              <span style="font-size: 24px; color: var(--text-2); line-height: 1;">/ 591 total</span>
+              <span style="font-size: 20px; color: var(--text-3); line-height: 1;">&approx; 21.8%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>將穩定性與準確性評估並列。</li>
+        <li>第一點（左側）：測試 10% 樣本，Jaccard 相似度約 0.485。要強調根據過去研究，這在開放性任務中是非常好的表現，增加說服力。</li>
+        <li>第二點（右側）：另一方面，為了確保最終分析的準確性，我們人工審查了全量資料並剔除 129 筆錯誤。</li>
+        <li style="color: #b5714f; font-weight: 600; margin-top: 8px;">※ 防禦準備 (Q&A)：如果被問到 129 筆錯誤主要是什麼？<br>答：(1) **本體不一致 (Ontology mismatch)**：例如把「政治人物 (人)」標成「木偶 (物)」，或把「政治事件 (事)」標成「爸媽離婚 (人)」。(2) **非隱喻 (Non-metaphor)**：像「人民的力量」這種缺乏具體物理互動的空泛詞彙。(3) **錯誤歸類**：把具體外國政權標成抽象政治制度。我們嚴格排除了這些不合理的配對。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Before diving into the metaphors, we evaluated the LLM outputs from two perspectives. First, we tested its stability on a 10% sample, running it three times. The Jaccard similarity score was about 0.485. According to previous studies, this is actually a very strong performance for such an open-ended task. Second, to secure the accuracy for our downstream analysis, we manually reviewed the entire dataset and removed 129 incorrect mappings."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 10b. Results II: Human Validation & Refinement -->
+  <section class="slide" data-title="Data preparation">
+    <div class="slide-frame">
+    <p class="eyebrow">Results II</p>
+    <h2 class="title">Preparing Data for Analysis</h2>
+
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 60px; padding: 40px; background: var(--surface-2); border-radius: 12px; border: 1px solid var(--border-subtle);">
+      <b style="font-size: 36px; color: var(--text-1); margin-bottom: 40px;">Converging into macro frames</b>
+      
+      <div class="diagram" aria-hidden="true" style="display: flex; align-items: center; justify-content: center; gap: 40px;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="chip chip-accent cmt-formula" style="font-size: 32px; padding: 16px 32px;">Supporter Is Monkey</div>
+          <div class="chip chip-accent cmt-formula" style="font-size: 32px; padding: 16px 32px;">Politician Is Dog</div>
+        </div>
+        <div class="pipe-arrow" style="font-size: 50px;">→</div>
+        <div class="chip cmt-formula" style="font-size: 36px; padding: 20px 40px;">Politics Is Animal</div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>這頁單純講解「資料準備與收斂」，完全不提剔除錯誤。</li>
+        <li>說明為了後續的巨觀分析，我們需要把具體的細節（猴子、狗）收斂到大框架下（動物）。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"After the data was thoroughly cleaned, our next step was to prepare it for macro-level analysis. To do this, we converged the diverse, specific concepts into larger macro frames. For instance, specific animal mappings like 'Supporter is Monkey' or 'Politician is Dog' were all grouped together under the broader macro frame of 'POLITICS IS ANIMAL'."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 11. Results III: Merged -->
+  <section class="slide slide-pair" data-title="Merged results">
+    <div class="slide-frame">
+      <p class="eyebrow">Results III</p>
+      <h2 class="title">Macro source domains, 2014 vs 2026</h2>
+      <div class="pair-charts" style="margin-top: 20px;">
+        <div id="macro-period-2014-chart" class="period-network"></div>
+        <div id="macro-period-2026-chart" class="period-network"></div>
+      </div>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>揭曉宏觀結果：兩年之間「動物、戰爭、娛樂」穩居前三名，超級穩定。</li>
+        <li style="color: #b5714f; font-weight: 600; margin-top: 8px;">※ 防禦準備 (Q&A)：如果有學者問說有沒有跑統計驗證？<br>答：我們有針對各個大類的比例進行適合度檢定，結果顯示兩個年度的巨觀分佈沒有顯著差異（比例高度一致）。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Now, let's look at the results. At the macro level, the pattern is highly stable. In both 2014 and 2026, the top three source domains are exactly the same: Animal, War, and Entertainment. The relative sizes of these domains remain highly consistent. Thus, the big picture of political metaphors has not changed across these twelve years."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 12. Results IV: Animal -->
+  <section class="slide slide-pair" data-title="Fine Animal">
+    <div class="slide-frame">
+      <p class="eyebrow">Results IV</p>
+      <h2 class="title">Fine-grained source, 2014 vs 2026 — Animal</h2>
+    <div class="pair-charts" style="margin-top: 16px;">
+      <div id="animal-period-2014-chart" class="period-network"></div>
+      <div id="animal-period-2026-chart" class="period-network"></div>
+    </div>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>切入細節（Animal）：發生了劇烈的替換。</li>
+        <li>從 2014 年的猴子（吱吱）、昆蟲（蛆蛆），變成 2026 年的鳥類（青鳥）與家畜（綠畜）。</li>
+        <li>狗（走狗）則是跨越十年始終存在的經典罵人用語。</li>
+        <li>點出原因：有些隱喻是永恆的，有些則完美反映了真實世界的實體社會運動與流行語更迭。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"However, when we zoom into the 'Animal' category, we see a massive shift. In 2014, the top three metaphors were 'Monkey', 'Insect', and 'Dog'. But in 2026, we found a huge change. First, 'Bird' increased to nearly 50 percent, reflecting the recent political incident known as the 'Bluebird Action'. Second, 'Livestock' emerged as a new popular insult. It should be noted that the word 'livestock' might seem like a neutral agricultural term in English. But in the context of Mandarin, it is a severe insult. It literally implies someone is 'not human'—degrading people from the opposing camp as lower-level beasts. Interestingly, 'Dog' is the only animal that remains stable across these twelve years. This proves that some metaphors remain stable over time, but others rapidly evolve alongside real-world events."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 13. Results V: War -->
+  <section class="slide slide-pair" data-title="Fine War">
+    <div class="slide-frame">
+      <p class="eyebrow">Results V</p>
+      <h2 class="title">Fine-grained source, 2014 vs 2026 — War</h2>
+    <div class="pair-charts" style="margin-top: 16px;">
+      <div id="war-period-2014-chart" class="period-network"></div>
+      <div id="war-period-2026-chart" class="period-network"></div>
+    </div>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>切入細節（War）：這組內部結構極度穩定。</li>
+        <li>戰鬥與火力，不管是在哪個年代都是主流。</li>
+        <li>證明台灣網民對政治衝突的想像方式很固定。</li>
+        <li style="color: #b5714f; font-weight: 600; margin-top: 8px;">※ 防禦準備 (Q&A)：這頁有做統計驗證嗎？<br>答：有的，War 類別內部的各項比例也通過了統計檢定，顯示沒有顯著差異（分佈高度一致）。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Now, let's look at another major domain: 'War'. Unlike the massive shifts we saw in the Animal category, the 'War' domain is highly stable internally. The top roles, such as Combat, Firepower, and Battlefield, remain exactly the same across these twelve years. Their relative proportions are almost identical. Taiwanese internet users conceptualise political conflict as war in a very consistent way."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 14. Results VI: Entertainment -->
+  <section class="slide slide-pair" data-title="Fine Entertainment">
+    <div class="slide-frame">
+      <p class="eyebrow">Results VI</p>
+      <h2 class="title">Fine-grained source, 2014 vs 2026 — Entertainment</h2>
+    <div class="pair-charts" style="margin-top: 16px;">
+      <div id="entertainment-period-2014-chart" class="period-network"></div>
+      <div id="entertainment-period-2026-chart" class="period-network"></div>
+    </div>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>切入細節（Entertainment）：這組非常破碎，缺乏收斂。</li>
+        <li>因為樣本數太少，只能看出這類隱喻很多元分散。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Finally, the 'Entertainment' category is quite different. It is highly fragmented across many small types like Drama trope, Acting, and Script. Because the sample size here is much smaller than the previous two domains, the numbers fluctuate between the years without reaching statistical significance. Therefore, we should interpret this category as a diverse qualitative trend, rather than looking for strict quantitative patterns."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 15. Takeaways -->
+  <section class="slide" data-title="Takeaways">
+    <div class="slide-frame">
+    <p class="eyebrow">Takeaways</p>
+    <h2 class="title">What are the takeaways?</h2>
+    <div class="diagram diagram-takeaways" aria-hidden="true" style="margin-top: 48px;">
+      <div class="take-card takeaway-card">
+        <svg viewBox="0 0 400 130" class="mini-net" style="max-height: 140px;">
+          <text x="100" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a7a">2014</text>
+          <circle cx="100" cy="68" r="20" fill="var(--text-1)"/>
+          <text x="100" y="72" text-anchor="middle" fill="var(--bg)" font-size="10" font-weight="700">Politics</text>
+          <circle cx="65" cy="35" r="13" fill="var(--bg)" stroke="#1a3a7a" stroke-width="2"/>
+          <circle cx="135" cy="35" r="13" fill="var(--bg)" stroke="#1a3a7a" stroke-width="2"/>
+          <circle cx="65" cy="100" r="13" fill="var(--bg)" stroke="#1a3a7a" stroke-width="2"/>
+          <line x1="100" y1="68" x2="76" y2="42" stroke="var(--border-strong)"/>
+          <line x1="100" y1="68" x2="124" y2="42" stroke="var(--border-strong)"/>
+          <line x1="100" y1="68" x2="76" y2="93" stroke="var(--border-strong)"/>
+          <text x="65" y="38" text-anchor="middle" font-size="7">Animal</text>
+          <text x="135" y="38" text-anchor="middle" font-size="7">War</text>
+          <text x="65" y="103" text-anchor="middle" font-size="6.5">Enter.</text>
+
+          <text x="300" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#8a1a1a">2026</text>
+          <circle cx="300" cy="68" r="20" fill="var(--text-1)"/>
+          <text x="300" y="72" text-anchor="middle" fill="var(--bg)" font-size="10" font-weight="700">Politics</text>
+          <circle cx="265" cy="35" r="13" fill="var(--bg)" stroke="#8a1a1a" stroke-width="2"/>
+          <circle cx="335" cy="35" r="13" fill="var(--bg)" stroke="#8a1a1a" stroke-width="2"/>
+          <circle cx="265" cy="100" r="13" fill="var(--bg)" stroke="#8a1a1a" stroke-width="2"/>
+          <line x1="300" y1="68" x2="276" y2="42" stroke="var(--border-strong)"/>
+          <line x1="300" y1="68" x2="324" y2="42" stroke="var(--border-strong)"/>
+          <line x1="300" y1="68" x2="276" y2="93" stroke="var(--border-strong)"/>
+          <text x="265" y="38" text-anchor="middle" font-size="7">Animal</text>
+          <text x="335" y="38" text-anchor="middle" font-size="7">War</text>
+          <text x="265" y="103" text-anchor="middle" font-size="6.5">Enter.</text>
+        </svg>
+        <b>Macro frames hold steady</b>
+        <ul>
+          <li>Keep Animal, War, and Entertainment as the top three</li>
+          <li>Maintain the same order and shares across both years</li>
+        </ul>
+      </div>
+      <div class="take-card takeaway-card">
+        <svg viewBox="0 0 200 120" class="mini-net" style="max-height: 140px;">
+          <line x1="14" y1="100" x2="186" y2="100" stroke="var(--border-strong)"/>
+          <rect x="22" y="30" width="20" height="70" fill="#1a3a7a"/>
+          <rect x="50" y="94" width="20" height="6" fill="#1a3a7a" opacity="0.55"/>
+          <text x="32" y="112" text-anchor="middle" font-size="8">Monkey</text>
+          <text x="60" y="112" text-anchor="middle" font-size="8">Bird</text>
+          <text x="46" y="20" text-anchor="middle" font-size="9" font-weight="700" fill="#1a3a7a">2014</text>
+
+          <text x="100" y="70" text-anchor="middle" font-size="16" fill="var(--text-3)">→</text>
+
+          <rect x="128" y="96" width="20" height="4" fill="#8a1a1a" opacity="0.55"/>
+          <rect x="156" y="32" width="20" height="68" fill="#8a1a1a"/>
+          <text x="138" y="112" text-anchor="middle" font-size="8">Monkey</text>
+          <text x="166" y="112" text-anchor="middle" font-size="8">Bird</text>
+          <text x="152" y="20" text-anchor="middle" font-size="9" font-weight="700" fill="#8a1a1a">2026</text>
+        </svg>
+        <b>Animal swaps its symbol</b>
+        <ul>
+          <li>Features a Monkey (2014) to Bird (2026) swap</li>
+          <li>Reflects a recent public movement</li>
+        </ul>
+      </div>
+      <div class="take-card takeaway-card">
+        <svg viewBox="0 0 200 120" class="mini-net" style="max-height: 140px;">
+          <line x1="14" y1="100" x2="186" y2="100" stroke="var(--border-strong)"/>
+          <rect x="20" y="30" width="16" height="70" fill="var(--text-1)"/>
+          <rect x="40" y="55" width="16" height="45" fill="var(--text-1)" opacity="0.75"/>
+          <rect x="60" y="80" width="16" height="20" fill="var(--text-1)" opacity="0.5"/>
+          <text x="48" y="112" text-anchor="middle" font-size="9">War</text>
+
+          <rect x="112" y="68" width="12" height="32" fill="var(--text-3)"/>
+          <rect x="128" y="70" width="12" height="30" fill="var(--text-3)"/>
+          <rect x="144" y="72" width="12" height="28" fill="var(--text-3)"/>
+          <rect x="160" y="74" width="12" height="26" fill="var(--text-3)"/>
+          <rect x="176" y="76" width="12" height="24" fill="var(--text-3)"/>
+          <text x="150" y="112" text-anchor="middle" font-size="8">Entertainment</text>
+        </svg>
+        <b>War &amp; Entertainment stay consistent</b>
+        <ul>
+          <li>War remains concentrated in a few roles</li>
+          <li>Entertainment remains spread across many types</li>
+          <li>Both hold the same pattern across both years</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>快速總結三個節奏 (Three beats)。</li>
+        <li>大框架超級穩 ➔ 動物細節因社運劇變 ➔ 戰爭/娛樂細節很固定。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"To summarise our results into three key takeaways: First, the big macro frames—Animal, War, and Entertainment—hold remarkably steady over time. Second, the small details can change dramatically. For instance, the Animal category completely swapped 'Monkey' for 'Bird' due to social movements. Lastly, other specific categories stay highly consistent in their own ways. War remains concentrated in just a few top roles, but Entertainment remains widely spread across many small types. Both patterns held strong across the twelve years."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 16. Error Analysis + Cautions (merged) -->
+  <section class="slide" data-title="Error breakdown">
+    <div class="slide-frame">
+    <p class="eyebrow">Error Analysis · Cautions</p>
+    <h2 class="title">Which errors matter most?</h2>
+    <p class="body-text" style="font-size: 24px;">The two biggest patterns in the rows we corrected — and why they happen.</p>
+
+    <div class="diagram diagram-takeaways" aria-hidden="true" style="margin-top: 44px; gap: 36px; grid-template-columns: repeat(2, 1fr); max-width: 1100px; margin-left: auto; margin-right: auto;">
+      <div class="take-card card-panel" style="justify-content: flex-start;">
+        <b style="display: block; margin-bottom: 4px;">Person ↔ thing mismatch</b>
+        <div style="font-size: 18px; color: var(--text-2); background: var(--bg); padding: 3px 12px; border-radius: 4px; border-left: 3px solid #718096; margin-bottom: 8px;">
+          e.g., <span style="font-style: italic;">"The Premier steps down from the stage (行政院長下台)"</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; padding-left: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="display: inline-block; width: 24px; text-align: center; color: var(--bad, #d32f2f); font-weight: bold; font-size: 28px;">✗</span>
+            <span class="chip chip-warn cmt-formula" style="white-space: nowrap;">Politician Is Stage</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="display: inline-block; width: 24px; text-align: center; color: var(--accent, #2e7d32); font-weight: bold; font-size: 28px;">✓</span>
+            <span class="chip chip-accent cmt-formula" style="white-space: nowrap;">Politician Is Performer</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="display: inline-block; width: 24px; text-align: center; color: var(--accent, #2e7d32); font-weight: bold; font-size: 28px;">✓</span>
+            <span class="chip chip-accent cmt-formula" style="white-space: nowrap;">Position Is Stage</span>
+          </div>
+        </div>
+      </div>
+      <div class="take-card card-panel" style="justify-content: flex-start;">
+        <b style="display: block; margin-bottom: 8px;">Unspecified vehicle</b>
+        <ul style="margin-top: 0; margin-bottom: 12px;">
+          <li>Distinct vehicles (Monkey, Bird) end up in a generic "Other" bucket.</li>
+        </ul>
+        <div style="display: flex; flex-direction: column; gap: 14px; padding-left: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="display: inline-block; width: 24px; text-align: center; color: var(--bad, #d32f2f); font-weight: bold; font-size: 28px;">✗</span>
+            <span class="chip chip-warn cmt-formula" style="white-space: nowrap;">Politician Is Animal (Other)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="display: inline-block; width: 24px; text-align: center; color: var(--accent, #2e7d32); font-weight: bold; font-size: 28px;">✓</span>
+            <span class="chip chip-accent cmt-formula" style="white-space: nowrap;">Politician Is Monkey</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="display: inline-block; width: 24px; text-align: center; color: var(--accent, #2e7d32); font-weight: bold; font-size: 28px;">✓</span>
+            <span class="chip chip-accent cmt-formula" style="white-space: nowrap;">Politician Is Bird</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>點出第一個常犯錯誤：人被 LLM 錯置到無生命的舞台/戰爭事件上。</li>
+        <li>點出第二個常犯錯誤：LLM 雖然抓對大框架，但細節卻只丟出一個粗糙的「其他動物」。這是一個設計上的權衡（Trade-off）。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Now, these findings show the power of our LLM pipeline, but getting these clean results required careful human review. Of course, the model is not perfect, and we noticed two main areas for improvement. First, the 'person-to-thing mismatch'. For example, when encountering a sentence like 'The Premier steps down from the stage'—which literally means stepping off a stage but actually means 'resigning'—the model sometimes mistakenly mapped a politician to a 'stage'. But as shown here, the source domain must match the ontological nature of the target. A politician should be mapped to a 'performer', or a political 'position' should be mapped to a 'stage'. Second, the 'unspecified vehicle'. The model sometimes put distinct animals into a generic 'Other' bucket, rather than specifying them as 'Monkey' or 'Bird'. This doesn't affect the macro-level analysis, but it blocks us from exploring finer details. We originally included the 'Other' option in our prompts to avoid missing metaphors, so this is a clear trade-off we need to balance in future research."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 17. Contributions -->
+  <section class="slide slide-claim" data-title="Contributions">
+    <div class="slide-frame">
+    <p class="eyebrow">Conclusion</p>
+    <h2 class="title">Contributions &amp; Suggestions</h2>
+    <div class="diagram diagram-collab" aria-hidden="true" style="margin-top: 36px; margin-bottom: 36px;">
+      <div class="node"><b>LLM</b><span>Scale &amp; Surface</span></div>
+      <div class="collab-cycle">
+        <span>prompt</span>
+        <span class="pipe-arrow">⇄</span>
+        <span>review</span>
+      </div>
+      <div class="node node-accent"><b>Linguist</b><span>Ontology &amp; Theory</span></div>
+    </div>
+    
+    <div class="diagram-gap" style="grid-template-columns: 1fr 1fr; gap: 32px;">
+      <div class="take-card card-panel" style="gap: 12px; min-height: auto;">
+        <b style="font-size: 28px; color: var(--accent); min-height: auto;">Contributions</b>
+        <ul style="font-size: 24px; padding-left: 20px; margin-top: 0;">
+          <li>A reproducible pipeline for large-scale extraction</li>
+          <li>Mapped discourse dynamics (2014 vs 2026)</li>
+        </ul>
+      </div>
+      <div class="take-card card-panel" style="gap: 12px; min-height: auto;">
+        <b style="font-size: 28px; color: var(--text-2); min-height: auto;">Suggestions</b>
+        <ul style="font-size: 24px; padding-left: 20px; margin-top: 0;">
+          <li>LLMs are annotation aids, not analysts</li>
+          <li>Human validation remains essential for ontology</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>貢獻：一套可重現的萃取流程、紀錄了台灣十年的文本演變。</li>
+        <li>建議：LLM 是助手不是分析師，人類檢驗理論依然不可或缺。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Overall, our study makes two main contributions. First, we built a steady pipeline to extract metaphors from large-scale data. Second, we successfully tracked how political language evolved across these twelve years. Based on our findings, our main suggestion is clear: LLMs are great annotation assistants, but they are not independent analysts. We absolutely still need human experts to define the categories and correct the ontology errors."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 18. AI Era -->
+  <section class="slide slide-claim" data-title="AI Era">
+    <div class="slide-frame">
+    <p class="eyebrow">Looking forward</p>
+    <h2 class="title">Will LLMs replace domain experts?</h2>
+    
+    <div class="diagram-gap" style="grid-template-columns: 1fr; gap: 32px; margin-top: 48px;">
+      <div class="take-card card-panel" style="gap: 12px; min-height: auto;">
+        <b style="font-size: 32px; color: var(--accent); min-height: auto;">Language is alive and dynamic</b>
+        <ul style="font-size: 26px; color: var(--text-2); line-height: 1.5; margin-top: 0; margin-bottom: 0; padding-left: 24px;">
+          <li>Language evolves with personal style, culture, and time.</li>
+          <li>Static training data cannot fully capture this moving target.</li>
+        </ul>
+      </div>
+
+      <div class="take-card card-panel" style="gap: 12px; min-height: auto;">
+        <b style="font-size: 32px; color: var(--text-1); min-height: auto;">The true role of linguists</b>
+        <ul style="font-size: 26px; color: var(--text-2); line-height: 1.5; margin-top: 0; margin-bottom: 0; padding-left: 24px;">
+          <li>Move beyond chasing the last few percentages of accuracy.</li>
+          <li>Guide AI to uncover the cultural logic behind massive texts.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>呼應主題：語言是活的，所以單靠靜態訓練資料去追逐 100% 準確率是不切實際的。</li>
+        <li>下結論：語言學家的真正角色是去引導 AI 挖掘文本背後的文化邏輯。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Finally, will LLMs completely replace us? The answer is no. Language is alive, and it is always changing with culture. Static training data cannot fully capture this. Therefore, we should not blindly chase 100 percent accuracy. Instead, the true role of linguists is to guide AI to uncover the deep cultural logic behind the text."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 19. Thanks -->
+  <section class="slide slide-cover" data-title="Thanks">
+    <div class="slide-frame" style="display: flex; flex-direction: column; justify-content: center; min-height: 100%;">
+    <p class="eyebrow">SICOL 2026</p>
+    <h1 class="title-cover">Thank you for listening.</h1>
+    <hr class="rule" style="margin-top: 32px; margin-bottom: 32px;">
+    <p class="byline">Chang-Yu Tsai<br><span>National Institute of Cyber Security</span></p>
+    <div class="notes">
+      <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
+        <li>感謝聆聽。</li>
+        <li>開放 Q&A。</li>
+      </ul>
+      <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
+        <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Thank you very much for your time and attention. I am happy to take any questions."</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+</div>
+
+</div>
+</div>
+<script>
+
+const mergedWordCloudData = [
+        {
+                "label": "Animal",
+                "count": 248,
+                "ratio": 0.5367965367965368
+        },
+        {
+                "label": "War",
+                "count": 73,
+                "ratio": 0.15800865800865801
+        },
+        {
+                "label": "Entertainment",
+                "count": 38,
+                "ratio": 0.08225108225108226
+        },
+        {
+                "label": "Crime",
+                "count": 30,
+                "ratio": 0.06493506493506493
+        },
+        {
+                "label": "Religion",
+                "count": 24,
+                "ratio": 0.05194805194805195
+        },
+        {
+                "label": "Family",
+                "count": 18,
+                "ratio": 0.03896103896103896
+        },
+        {
+                "label": "Business",
+                "count": 17,
+                "ratio": 0.03679653679653679
+        },
+        {
+                "label": "Waste",
+                "count": 9,
+                "ratio": 0.019480519480519480
+        },
+        {
+                "label": "Manipulable object",
+                "count": 5,
+                "ratio": 0.010822510822510822
+        }
+];
+const fineSourceBreakdowns = {
+        "animal": [
+                {
+                        "dataset": "2014",
+                        "label": "Monkey",
+                        "count": 82
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Dog",
+                        "count": 33
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Insect",
+                        "count": 15
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Jellyfish",
+                        "count": 3
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Pig",
+                        "count": 2
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Horse",
+                        "count": 2
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Eagle",
+                        "count": 2
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Bird",
+                        "count": 2
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Pigeon",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Livestock",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Dragon",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Bear",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Shrimp",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Fish",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Rat",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Bird",
+                        "count": 45
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Livestock",
+                        "count": 21
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Dog",
+                        "count": 9
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Insect",
+                        "count": 6
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Wolf",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Pig",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Fish",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Chicken",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Ostrich",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Tiger",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Rat",
+                        "count": 1
+                }
+        ],
+        "war": [
+                {
+                        "dataset": "2014",
+                        "label": "Combat",
+                        "count": 11
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Firepower",
+                        "count": 8
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Battlefield",
+                        "count": 8
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Attacker",
+                        "count": 5
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Enemy relation",
+                        "count": 5
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Defeat/retreat",
+                        "count": 4
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Defender",
+                        "count": 2
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Betrayer",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Collaborator",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Combat",
+                        "count": 12
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Firepower",
+                        "count": 7
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Battlefield",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Defender",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Collaborator",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Attacker",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Defeat/retreat",
+                        "count": 1
+                }
+        ],
+        "entertainment": [
+                {
+                        "dataset": "2014",
+                        "label": "Script",
+                        "count": 3
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Show",
+                        "count": 2
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Farce",
+                        "count": 2
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Grand Theft Auto",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Plot drama",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Anime expo",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Free-fall ride",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Theatrical show",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Drama trope",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Tricks",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Wrestling show",
+                        "count": 1
+                },
+                {
+                        "dataset": "2014",
+                        "label": "Which act?",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Drama trope",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Acting",
+                        "count": 2
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Script",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Big show",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Demon king",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Variety / ball game",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Director",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Staged play",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Spectating",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Performance",
+                        "count": 1
+                },
+                {
+                        "dataset": "2026",
+                        "label": "Mouthpiece",
+                        "count": 1
+                }
+        ]
+};
+const sourceDomainData = [
+        {
+                "dataset": "2014",
+                "source": "動物",
+                "count": 148,
+                "ratio": 0.5156794425087108
+        },
+        {
+                "dataset": "2014",
+                "source": "戰爭",
+                "count": 45,
+                "ratio": 0.156794425087108
+        },
+        {
+                "dataset": "2014",
+                "source": "戲劇/娛樂",
+                "count": 25,
+                "ratio": 0.08710801393728224
+        },
+        {
+                "dataset": "2014",
+                "source": "犯罪",
+                "count": 20,
+                "ratio": 0.06968641114982578
+        },
+        {
+                "dataset": "2014",
+                "source": "宗教",
+                "count": 17,
+                "ratio": 0.059233449477351915
+        },
+        {
+                "dataset": "2014",
+                "source": "商業",
+                "count": 12,
+                "ratio": 0.041811846689895474
+        },
+        {
+                "dataset": "2014",
+                "source": "家庭",
+                "count": 8,
+                "ratio": 0.027874564459930314
+        },
+        {
+                "dataset": "2014",
+                "source": "廢棄物",
+                "count": 8,
+                "ratio": 0.027874564459930314
+        },
+        {
+                "dataset": "2014",
+                "source": "可操控的物件",
+                "count": 4,
+                "ratio": 0.013937282229965157
+        },
+        {
+                "dataset": "2026",
+                "source": "動物",
+                "count": 93,
+                "ratio": 0.5568862275449101
+        },
+        {
+                "dataset": "2026",
+                "source": "戰爭",
+                "count": 28,
+                "ratio": 0.16766467065868262
+        },
+        {
+                "dataset": "2026",
+                "source": "戲劇/娛樂",
+                "count": 13,
+                "ratio": 0.07784431137724551
+        },
+        {
+                "dataset": "2026",
+                "source": "家庭",
+                "count": 10,
+                "ratio": 0.059880239520958084
+        },
+        {
+                "dataset": "2026",
+                "source": "犯罪",
+                "count": 10,
+                "ratio": 0.059880239520958084
+        },
+        {
+                "dataset": "2026",
+                "source": "宗教",
+                "count": 6,
+                "ratio": 0.03592814371257485
+        },
+        {
+                "dataset": "2026",
+                "source": "商業",
+                "count": 5,
+                "ratio": 0.029940119760479042
+        },
+        {
+                "dataset": "2026",
+                "source": "可操控的物件",
+                "count": 1,
+                "ratio": 0.005988023952095809
+        },
+        {
+                "dataset": "2026",
+                "source": "廢棄物",
+                "count": 1,
+                "ratio": 0.005988023952095809
+        },
+        {
+                "dataset": "merged",
+                "source": "動物",
+                "count": 241,
+                "ratio": 0.5308370044052864
+        },
+        {
+                "dataset": "merged",
+                "source": "戰爭",
+                "count": 73,
+                "ratio": 0.16079295154185022
+        },
+        {
+                "dataset": "merged",
+                "source": "戲劇/娛樂",
+                "count": 38,
+                "ratio": 0.08370044052863436
+        },
+        {
+                "dataset": "merged",
+                "source": "犯罪",
+                "count": 30,
+                "ratio": 0.06607929515418502
+        },
+        {
+                "dataset": "merged",
+                "source": "宗教",
+                "count": 23,
+                "ratio": 0.05066079295154185
+        },
+        {
+                "dataset": "merged",
+                "source": "家庭",
+                "count": 18,
+                "ratio": 0.039647577092511016
+        },
+        {
+                "dataset": "merged",
+                "source": "商業",
+                "count": 17,
+                "ratio": 0.037444933920704845
+        },
+        {
+                "dataset": "merged",
+                "source": "廢棄物",
+                "count": 9,
+                "ratio": 0.019823788546255508
+        },
+        {
+                "dataset": "merged",
+                "source": "可操控的物件",
+                "count": 5,
+                "ratio": 0.011013215859030838
+        }
+];
+
+const colors = { "2014": "#1a3a7a", "2026": "#8a1a1a", merged: "#0a0a0a" };
+const domainColors = {
+  "Animal": "#3b82f6",
+  "War": "#ef4444",
+  "Entertainment": "#10b981"
+};
+const neutralColors = { "2014": "#52525b", "2026": "#09090b" };
+const sourceLabels = {
+  "動物": "Animal", "戰爭": "War", "戲劇/娛樂": "Entertainment",
+  "犯罪": "Crime", "宗教": "Religion", "家庭": "Family",
+  "商業": "Business", "廢棄物": "Waste", "可操控物": "Manipulable object",
+  "可操控的物件": "Manipulable object"
+};
+
+function mountChart(id, node) {
+  const el = document.getElementById(id);
+  if (!el || !node) return;
+  el.replaceChildren(node);
+}
+
+function pct(x) { return (x * 100).toFixed(1) + "%"; }
+
+function nodesFromBreakdown(key, year, topN) {
+  const rows = fineSourceBreakdowns[key].filter((d) => d.dataset === year);
+  const total = rows.reduce((sum, d) => sum + d.count, 0);
+  const sorted = rows
+    .map((d) => ({ label: d.label, value: d.count, display: pct(d.count / total) }))
+    .sort((a, b) => b.value - a.value);
+  return topN ? sorted.slice(0, topN) : sorted;
+}
+
+function renderPeriodNetwork(containerId, options) {
+  const {
+    year, color, centerLabel, nodes, maxValue,
+    width = 520, height = 480, nodeRadius = [10, 34], centerRadius = 52,
+    showYearLabel = true, labelFontSize, valueFontSize, centerFontSize, yearFontSize,
+    centerFill = "var(--text-1)",
+    getNodeColor = (d) => color
+  } = options;
+  const centerFontFallback = centerLabel.length >= 10 ? (width > 600 ? 22 : 15) : (width > 600 ? 28 : 19);
+  const center = { x: width / 2, y: height / 2 + 12 };
+  const data = nodes.slice(0, 12);
+  const maxV = maxValue || Math.max(...data.map((d) => d.value), 1);
+  const radius = d3.scaleSqrt().domain([1, maxV]).range(nodeRadius);
+  const svg = d3.create("svg").attr("viewBox", [0, 0, width, height])
+    .attr("role", "img").attr("aria-label", `${year} ${centerLabel} network`);
+
+  const placed = data.map((d, i) => {
+    const a = -Math.PI / 2 + (i * 2 * Math.PI) / Math.max(data.length, 1);
+    const r = (height / 480) * (155 + (i % 2) * 22);
+    return { ...d, x: center.x + Math.cos(a) * r, y: center.y + Math.sin(a) * r };
+  });
+
+  if (showYearLabel) {
+    svg.append("text").attr("x", center.x).attr("y", 28)
+      .attr("text-anchor", "middle").attr("font-size", yearFontSize || 22).attr("font-weight", 700)
+      .attr("fill", color).text(year);
+  }
+
+  svg.append("g").attr("stroke-opacity", 0.28).attr("stroke-width", 2)
+    .selectAll("line").data(placed).join("line")
+    .attr("stroke", (d) => getNodeColor(d))
+    .attr("x1", center.x).attr("y1", center.y).attr("x2", (d) => d.x).attr("y2", (d) => d.y);
+
+  const node = svg.append("g").selectAll("g").data(placed).join("g");
+  node.append("circle").attr("cx", (d) => d.x).attr("cy", (d) => d.y)
+    .attr("r", (d) => radius(d.value))
+    .attr("fill", "var(--surface)");
+  node.append("circle").attr("cx", (d) => d.x).attr("cy", (d) => d.y)
+    .attr("r", (d) => radius(d.value))
+    .attr("fill", (d) => getNodeColor(d)).attr("fill-opacity", 0.15)
+    .attr("stroke", (d) => getNodeColor(d)).attr("stroke-width", 3);
+  const baseLabelSize = labelFontSize || 11;
+  node.append("text").attr("x", (d) => d.x).attr("y", (d) => d.y - 2)
+    .attr("text-anchor", "middle")
+    .attr("font-size", (d) => d.label.length > 14 ? baseLabelSize - 6 : d.label.length > 10 ? baseLabelSize - 3 : baseLabelSize)
+    .attr("font-weight", 700).attr("fill", "var(--text-1)")
+    .attr("paint-order", "stroke").attr("stroke", "var(--bg)").attr("stroke-width", 3).attr("stroke-linejoin", "round")
+    .text((d) => d.label);
+  node.append("text").attr("x", (d) => d.x).attr("y", (d) => d.y + (valueFontSize ? valueFontSize + 4 : 12))
+    .attr("text-anchor", "middle").attr("font-size", valueFontSize || 11).attr("font-weight", 600)
+    .attr("fill", "var(--text-3)")
+    .attr("paint-order", "stroke").attr("stroke", "var(--bg)").attr("stroke-width", 3).attr("stroke-linejoin", "round")
+    .text((d) => d.display ?? d.value);
+
+  const cg = svg.append("g");
+  cg.append("circle").attr("cx", center.x).attr("cy", center.y).attr("r", centerRadius)
+    .attr("fill", centerFill).attr("stroke", "var(--surface)").attr("stroke-width", 3);
+  cg.append("text").attr("x", center.x).attr("y", center.y + ((centerFontSize || centerFontFallback) * 0.35))
+    .attr("text-anchor", "middle").attr("font-size", centerFontSize || centerFontFallback)
+    .attr("font-weight", 700).attr("fill", "var(--bg)").text(centerLabel);
+
+  mountChart(containerId, svg.node());
+}
+
+function renderMacroPeriodPair() {
+  const byYear = (year) => sourceDomainData
+    .filter((d) => d.dataset === year)
+    .map((d) => ({ label: sourceLabels[d.source] || d.source, value: d.count, display: pct(d.ratio) }))
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 3);
+  const left = byYear("2014");
+  const right = byYear("2026");
+  renderPeriodNetwork("macro-period-2014-chart", {
+    year: "2014", color: colors["2014"], centerLabel: "Politics", nodes: left,
+    maxValue: Math.max(...left.map((d) => d.value), 1),
+    width: 710, height: 620, nodeRadius: [40, 74], centerRadius: 84,
+    labelFontSize: 20, valueFontSize: 18, yearFontSize: 28, centerFontSize: 28,
+    getNodeColor: (d) => domainColors[d.label] || colors["2014"]
+  });
+  renderPeriodNetwork("macro-period-2026-chart", {
+    year: "2026", color: colors["2026"], centerLabel: "Politics", nodes: right,
+    maxValue: Math.max(...right.map((d) => d.value), 1),
+    width: 710, height: 620, nodeRadius: [40, 74], centerRadius: 84,
+    labelFontSize: 20, valueFontSize: 18, yearFontSize: 28, centerFontSize: 28,
+    getNodeColor: (d) => domainColors[d.label] || colors["2026"]
+  });
+}
+
+function renderPair(key, centerLabel, topN) {
+  const left = nodesFromBreakdown(key, "2014", topN);
+  const right = nodesFromBreakdown(key, "2026", topN);
+  const maxValue = Math.max(...[...left, ...right].map((d) => d.value), 1);
+  const sizing = topN
+    ? {
+        width: 710, height: 620, nodeRadius: [40, 74], centerRadius: 84,
+        labelFontSize: 20, valueFontSize: 18, yearFontSize: 28, centerFontSize: centerLabel.length >= 10 ? 21 : 28
+      }
+    : {};
+  
+  const centerFill = domainColors[centerLabel] || "var(--text-1)";
+  
+  renderPeriodNetwork(`${key}-period-2014-chart`, {
+    year: "2014", color: neutralColors["2014"], centerLabel, nodes: left, maxValue, centerFill, ...sizing
+  });
+  renderPeriodNetwork(`${key}-period-2026-chart`, {
+    year: "2026", color: neutralColors["2026"], centerLabel, nodes: right, maxValue, centerFill, ...sizing
+  });
+}
+
+function renderCharts() {
+  renderMacroPeriodPair();
+  renderPair("animal", "Animal", 3);
+  renderPair("war", "War", 3);
+  renderPair("entertainment", "Entertainment", 3);
+}
+
+document.addEventListener("DOMContentLoaded", renderCharts);
+</script>
+
+<script>
+(function () {
+  const W = 1600, H = 900;
+  const stage = document.getElementById("stage");
+  function fit() {
+    if (!stage) return;
+    const s = Math.min(window.innerWidth / W, window.innerHeight / H);
+    stage.style.transform = "scale(" + s + ")";
+  }
+  fit();
+  window.addEventListener("resize", fit);
+  window.addEventListener("orientationchange", fit);
+})();
+</script>
+<script src="assets/runtime.js"></script>
+<script>
+(function () {
+  const pageEl = document.getElementById("page-num");
+  function slides() {
+    return Array.from(document.querySelectorAll(".deck > .slide"));
+  }
+  function updatePageNum() {
+    if (!pageEl) return;
+    const list = slides();
+    const idx = list.findIndex((s) => s.classList.contains("is-active"));
+    const i = idx < 0 ? 0 : idx;
+    if (i === 0) {
+      pageEl.hidden = true;
+      pageEl.setAttribute("aria-hidden", "true");
+      pageEl.textContent = "";
+      return;
+    }
+    const total = Math.max(list.length - 1, 1);
+    pageEl.hidden = false;
+    pageEl.setAttribute("aria-hidden", "false");
+    pageEl.textContent = i + " / " + total;
+  }
+  window.addEventListener("hashchange", updatePageNum);
+  const deck = document.querySelector(".deck");
+  if (deck) {
+    new MutationObserver(updatePageNum).observe(deck, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+  }
+  document.addEventListener("keydown", () => requestAnimationFrame(updatePageNum));
+  updatePageNum();
+  setTimeout(updatePageNum, 0);
+})();
+</script>
+</body>
+</html>
