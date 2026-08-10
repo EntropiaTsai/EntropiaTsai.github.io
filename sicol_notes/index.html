@@ -496,13 +496,13 @@
     <div class="notes">
       <ul style="margin-bottom: 16px; font-size: 20px; color: #666; line-height: 1.5;">
         <li>用「夾著尾巴」的例子來展示萃取邏輯。</li>
-        <li>強調我們採用的是 CMDAG（Conceptual Metaphor Domain Annotation Guidelines）來拆解 Tenor, Vehicle, Ground，並推導到 Domain。</li>
+        <li>強調我們採用的是 CMDAG（Chinese Metaphor Dataset with Annotated Grounds）來拆解 Tenor, Vehicle, Ground，並推導到 Domain。</li>
         <li>這證明了我們不只抓名詞，還能抓到「動作與行為」背後的結構隱喻。</li>
         <li>說明為了達成此工作流，我們設計了兩個 Prompts：第一個處理抽取 (TVG)，其輸出會串接給第二個 Prompt 進行領域映射 (Domain mapping)。</li>
       </ul>
       <div style="padding: 16px; background: #f0f7ff; border-left: 5px solid #2f6cb3; border-radius: 4px;">
         <b style="color: #2f6cb3; font-size: 20px; display: block; margin-bottom: 8px;">🗣️ Script to read:</b>
-        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Now, let me show you an example of how we find these metaphors. Look at the sentence: 'Pan-blue legislators fled, tucking their tails'. Following the Conceptual Metaphor Domain Annotation Guidelines-CMDAG protocol—we first identify the literal Tenor 'Legislators' and the non-literal action 'Tucking Tail'. Then, based on the Ground of fleeing in defeat, we map them into the Target Domain 'Politician' and Source Domain 'Dog'. Finally, we push them into the macro frame of 'Politics' and 'Animal'. As you can see, this method captures not just nouns, but also dynamic actions.<br><br>To make the LLM execute this workflow, we designed two prompts. The first one extracts the tenor, vehicle, and ground. This output is then passed to the second prompt, which analyses the target and source domains."</span>
+        <span style="font-size: 24px; line-height: 1.5; color: #111;">"Now, let me show you an example of how we find these metaphors. Look at the sentence: 'Pan-blue legislators fled, tucking their tails'. Following the Chinese Metaphor Dataset with Annotated Grounds-CMDAG protocol—we first identify the literal Tenor 'Legislators' and the non-literal action 'Tucking Tail'. Then, based on the Ground of fleeing in defeat, we map them into the Target Domain 'Politician' and Source Domain 'Dog'. Finally, we push them into the macro frame of 'Politics' and 'Animal'. As you can see, this method captures not just nouns, but also dynamic actions.<br><br>To make the LLM execute this workflow, we designed two prompts. The first one extracts the tenor, vehicle, and ground. This output is then passed to the second prompt, which analyses the target and source domains."</span>
       </div>
     </div>
     </div>
