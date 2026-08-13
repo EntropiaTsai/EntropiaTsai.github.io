@@ -16,6 +16,9 @@
   data-themes="academic-paper,minimal-white,editorial-serif"
   data-theme-base="assets/themes/">
 <div class="stage-viewport">
+<a href="../portfolio.html" class="home-btn" title="Back to Portfolio">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+</a>
 <div class="stage" id="stage">
 <div class="page-num" id="page-num" hidden aria-hidden="true"></div>
 <div class="deck">
@@ -1855,5 +1858,35 @@ document.addEventListener("DOMContentLoaded", renderCharts);
   setTimeout(updatePageNum, 0);
 })();
 </script>
+<style>
+.home-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  color: #666;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+.home-btn:hover {
+  color: #333;
+  background: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.home-btn svg {
+  width: 20px;
+  height: 20px;
+}
+</style>
 </body>
 </html>
